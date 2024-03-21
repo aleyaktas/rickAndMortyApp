@@ -6,6 +6,11 @@ import Icon from '../components/atoms/Icon';
 import colors from '../themes/colors';
 import Home from '../screens/Home';
 import Favorites from '../screens/Favorites';
+import {InitialStateProps} from '../store/features/user/types';
+
+export interface StateProps {
+  user: InitialStateProps;
+}
 
 export default (props: any) => {
   const BottomTab = createBottomTabNavigator();
