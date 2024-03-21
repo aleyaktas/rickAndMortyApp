@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Fredoka-Bold.ttf",
+      "sha1": "3d5cac577d4aa8a3d884d8d6dc1ba5b1de90e90b"
+    },
+    {
+      "path": "src/assets/fonts/Fredoka-Light.ttf",
+      "sha1": "da9c50fe8f7d52bf9d666a83fd4bc46b4780378e"
+    },
+    {
+      "path": "src/assets/fonts/Fredoka-Medium.ttf",
+      "sha1": "3d219f1c11f3987af69791331ad0db4372ccb28f"
+    },
+    {
+      "path": "src/assets/fonts/Fredoka-Regular.ttf",
+      "sha1": "4a6992f3b11bb3d686d4b5b428750b6b338930fc"
+    },
+    {
+      "path": "src/assets/fonts/Fredoka-SemiBold.ttf",
+      "sha1": "66bb6f480b4e49f80ae758b5c649ccbb3fde56d1"
+    }
+  ]
+}

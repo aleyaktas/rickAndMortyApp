@@ -9,6 +9,8 @@ import ToastSuccess from '../assets/icons/toastSuccess.svg';
 import ToastError from '../assets/icons/toastError.svg';
 import User from '../assets/icons/user.svg';
 import UserOutline from '../assets/icons/user-outline.svg';
+import Favorites from '../assets/icons/favorites.svg';
+import FavoritesOutline from '../assets/icons/favorites-outline.svg';
 
 const icons: {[key: string]: React.FC<SvgProps>} = {
   Home,
@@ -17,6 +19,8 @@ const icons: {[key: string]: React.FC<SvgProps>} = {
   ToastError,
   User,
   UserOutline,
+  Favorites,
+  FavoritesOutline,
 };
 
 const nonFlip: {[key: string]: string} = {};
