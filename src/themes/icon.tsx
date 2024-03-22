@@ -11,6 +11,8 @@ import User from '../assets/icons/user.svg';
 import UserOutline from '../assets/icons/user-outline.svg';
 import Favorites from '../assets/icons/favorites.svg';
 import FavoritesOutline from '../assets/icons/favorites-outline.svg';
+import Film from '../assets/icons/film.svg';
+import Episode from '../assets/icons/episode.svg';
 
 const icons: {[key: string]: React.FC<SvgProps>} = {
   Home,
@@ -21,6 +23,8 @@ const icons: {[key: string]: React.FC<SvgProps>} = {
   UserOutline,
   Favorites,
   FavoritesOutline,
+  Film,
+  Episode,
 };
 
 const nonFlip: {[key: string]: string} = {};

@@ -27,10 +27,8 @@ export default (props: any) => {
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        header: () => null,
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.blackOlive,
-
         tabBarLabelStyle: {fontSize: 13},
         tabBarStyle: {
           height: 63 + insets.bottom,
@@ -46,7 +44,21 @@ export default (props: any) => {
         name="Home"
         component={Home}
         options={{
+          headerBackgroundContainerStyle: {
+            backgroundColor: colors.primary,
+          },
           tabBarLabelStyle: fontFamilyStyle,
+          headerTitle: 'Episodes',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: 'Fredoka',
+            letterSpacing: 1.2,
+            color: colors.white.default,
+            fontWeight: '600',
+          },
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
           tabBarIcon: ({focused}) => (
             <Icon
               name={focused ? 'Home' : 'HomeOutline'}
