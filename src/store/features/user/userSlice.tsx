@@ -1,5 +1,6 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {ICharacter, InitialStateProps} from './types';
+import Toast from '../../../components/molecules/Toast';
 
 const initialState: InitialStateProps = {
   favorites: [],
@@ -17,6 +18,12 @@ export const userSlice = createSlice({
         item => item.id === action.payload.id,
       );
       if (index === -1) {
+        if (state.favorites.length > 10) {
+          return Toast.open({
+            type: 'error',
+            title: 'You can add only 10 characters to favorites!',
+          });
+        }
         state.favorites.push(action.payload);
       } else {
         state.favorites.splice(index, 1);
