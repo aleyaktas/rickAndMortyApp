@@ -22,7 +22,6 @@ const send = async (
     formBody.push(encodedKey + '=' + encodedValue);
   }
   formBody = formBody.join('&');
-  console.log(uri);
   const response = await fetch(uri, {
     method: method,
     headers: {

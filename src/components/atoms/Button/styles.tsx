@@ -5,8 +5,7 @@ export default ({border, borderColor, borderRadius}: Partial<StyleFnProps>) => {
   return {
     container: {},
     button: {
-      paddingVertical: 11,
-      paddingHorizontal: 13,
+      padding: 4,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',

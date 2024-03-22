@@ -1,9 +1,9 @@
 import {getCharacterById} from '../../services/api/actions';
-import {CharacterItem} from './types';
+import {ICharacter} from '../../store/features/user/types';
 
 export const getCharacterDetails = async (
   id: number,
-  setCharacter: React.Dispatch<React.SetStateAction<CharacterItem>>,
+  setCharacter: React.Dispatch<React.SetStateAction<ICharacter>>,
 ) => {
   const res = await getCharacterById(id);
   if (res) {

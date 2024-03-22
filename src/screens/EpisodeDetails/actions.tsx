@@ -17,7 +17,6 @@ export const getMultipleCharacters = async (
     React.SetStateAction<{id: number; image: string; name: string}[]>
   >,
 ) => {
-  console.log(ids);
   const res = await getCharactersById(ids);
   if (res) {
     setCharacterData(res);

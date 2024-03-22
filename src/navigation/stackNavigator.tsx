@@ -40,7 +40,7 @@ export default () => {
       />
       <Stack.Screen
         name="CharacterDetails"
-        options={{
+        options={({route}) => ({
           headerTitle: 'Character Details',
           headerTitleAlign: 'center',
           headerStyle: {
@@ -53,7 +53,10 @@ export default () => {
             fontWeight: '600',
           },
           headerTintColor: colors.white.default,
-        }}
+          headerRightContainerStyle: {
+            right: 16,
+          },
+        })}
         children={props => (
           <CharacterDetails
             {...props}

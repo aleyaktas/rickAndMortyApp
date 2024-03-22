@@ -1,5 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {InitialStateProps} from './types';
+import {ICharacter, InitialStateProps} from './types';
 
 const initialState: InitialStateProps = {
   favorites: [],
@@ -12,16 +12,18 @@ export const userSlice = createSlice({
     getFavorites: (state, action) => {
       state.favorites = action.payload;
     },
-    addFavorite: (state, action: PayloadAction<any>) => {
-      state.favorites.push(action.payload);
-    },
-    removeFavorite: (state, action: PayloadAction<any>) => {
-      state.favorites = state.favorites.filter(
-        (item: any) => item.id !== action.payload.id,
+    handleFavorite: (state, action: PayloadAction<ICharacter>) => {
+      const index = state.favorites.findIndex(
+        item => item.id === action.payload.id,
       );
+      if (index === -1) {
+        state.favorites.push(action.payload);
+      } else {
+        state.favorites.splice(index, 1);
+      }
     },
   },
 });
 
-export const {getFavorites, addFavorite, removeFavorite} = userSlice.actions;
+export const {getFavorites, handleFavorite} = userSlice.actions;
 export default userSlice.reducer;

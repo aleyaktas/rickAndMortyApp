@@ -27,7 +27,6 @@ export const getEpisodeById = async (id: number) => {
  */
 
 export const getCharactersById = async (ids: number[]) => {
-  console.log(ids);
   return get(`/character`, `/${ids.join(',')}`);
 };
 

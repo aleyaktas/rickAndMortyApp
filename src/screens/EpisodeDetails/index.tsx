@@ -42,10 +42,7 @@ const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
   }, [characterIds]);
 
   useEffect(() => {
-    console.log(episode);
     if (episode?.characters?.length > 0) {
-      console.log(episode.characters);
-
       setCharacterIds(
         episode.characters.map(characterUrl =>
           Number(characterUrl.split('/').pop()),
@@ -113,6 +110,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   characterName: {
+    flex: 1,
     marginTop: 'auto',
     fontSize: 14,
     textAlign: 'center',
