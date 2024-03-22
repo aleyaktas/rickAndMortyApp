@@ -38,7 +38,29 @@ export default () => {
           <EpisodeDetails {...props} episodeId={props.route.params.episodeId} />
         )}
       />
-      <Stack.Screen name="CharacterDetails" component={CharacterDetails} />
+      <Stack.Screen
+        name="CharacterDetails"
+        options={{
+          headerTitle: 'Character Details',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
+          headerTitleStyle: {
+            fontFamily: 'Fredoka',
+            letterSpacing: 1.2,
+            color: colors.white.default,
+            fontWeight: '600',
+          },
+          headerTintColor: colors.white.default,
+        }}
+        children={props => (
+          <CharacterDetails
+            {...props}
+            characterId={props.route.params.characterId}
+          />
+        )}
+      />
     </Stack.Navigator>
   );
 };

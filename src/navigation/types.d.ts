@@ -5,7 +5,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 export type StackNavigatorList = {
   BottomTab: undefined;
   EpisodeDetails: {episodeId: number};
-  CharacterDetails: undefined;
+  CharacterDetails: {characterId: number};
 };
 
 export type BottomNavigatorList = {

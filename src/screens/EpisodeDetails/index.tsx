@@ -4,14 +4,16 @@ import {
   Text,
   View,
   Image,
-  ScrollView,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import {EpisodeDetailsProps, CharacterItem} from './types';
 import {Episode} from '../../services/api/types';
-import {getEpisodesDetails, getCharacterDetails} from './actions';
+import {getEpisodesDetails, getMultipleCharacters} from './actions';
 import colors from '../../themes/colors';
 import InfoCard from '../../components/molecules/InfoCard';
+import {ScreenProp} from '../../navigation/types';
+import {useNavigation} from '@react-navigation/native';
 
 const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
   const [episode, setEpisode] = useState<Episode>({
@@ -24,60 +26,67 @@ const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
     created: '',
   });
   const [characterData, setCharacterData] = useState<
-    {imageUrl: string; name: string}[]
+    {id: number; image: string; name: string}[]
   >([]);
 
+  const [characterIds, setCharacterIds] = useState<number[]>([]);
+
+  const navigation = useNavigation<ScreenProp>();
+
   useEffect(() => {
-    const fetchEpisodeDetails = async () => {
-      await getEpisodesDetails(episodeId, setEpisode);
-    };
-    fetchEpisodeDetails();
+    getEpisodesDetails(episodeId, setEpisode);
   }, [episodeId]);
 
   useEffect(() => {
-    const fetchCharacterData = async () => {
-      const promises = episode.characters.map(async characterUrl => {
-        const characterId = characterUrl.split('/').pop();
-        if (characterId) {
-          const character = await getCharacterDetails(Number(characterId));
-          return {
-            imageUrl: character?.image || '',
-            name: character?.name || '',
-          };
-        }
-        return {imageUrl: '', name: ''};
-      });
-      const characterDataList = await Promise.all(promises);
-      setCharacterData(characterDataList);
-    };
+    getMultipleCharacters(characterIds, setCharacterData);
+  }, [characterIds]);
 
+  useEffect(() => {
+    console.log(episode);
     if (episode?.characters?.length > 0) {
-      fetchCharacterData();
+      console.log(episode.characters);
+
+      setCharacterIds(
+        episode.characters.map(characterUrl =>
+          Number(characterUrl.split('/').pop()),
+        ),
+      );
     }
   }, [episode]);
 
   const renderCharacterItem = ({item}: CharacterItem) => (
-    <View style={styles.characterContainer}>
-      <Image source={{uri: item.imageUrl}} style={styles.characterImage} />
+    <TouchableOpacity
+      style={styles.characterContainer}
+      activeOpacity={0.7}
+      onPress={() =>
+        navigation.navigate('CharacterDetails', {
+          characterId: item?.id,
+        })
+      }>
+      <Image source={{uri: item.image}} style={styles.characterImage} />
       <Text style={styles.characterName}>{item.name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.infoCardContainer}>
-        <InfoCard label="Name" text={episode.name} />
-        <InfoCard label="Air Date" text={episode.air_date} />
-        <InfoCard label="Episode" text={episode.episode} />
-      </View>
-      <Text style={styles.characterTitle}>Characters</Text>
-      <FlatList
-        data={characterData}
-        renderItem={renderCharacterItem}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={4}
-      />
-    </ScrollView>
+    <FlatList
+      style={styles.container}
+      data={characterData}
+      renderItem={renderCharacterItem}
+      keyExtractor={(item, index) => index.toString()}
+      contentContainerStyle={styles.contentContainerStyle}
+      numColumns={4}
+      ListHeaderComponent={
+        <>
+          <View style={styles.infoCardContainer}>
+            <InfoCard label="Name" text={episode.name} />
+            <InfoCard label="Air Date" text={episode.air_date} />
+            <InfoCard label="Episode" text={episode.episode} />
+          </View>
+          <Text style={styles.characterTitle}>Characters</Text>
+        </>
+      }
+    />
   );
 };
 
@@ -85,10 +94,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    backgroundColor: '#fff',
+  },
+  contentContainerStyle: {
+    paddingVertical: 16,
   },
   characterContainer: {
-    flex: 1,
+    flex: 1 / 4,
     alignItems: 'center',
     borderRadius: 12,
     borderWidth: 0.5,

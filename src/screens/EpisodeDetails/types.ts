@@ -4,7 +4,8 @@ export interface EpisodeDetailsProps {
 
 export interface CharacterItem {
   item: {
-    imageUrl: string;
+    id: number;
+    image: string;
     name: string;
   };
 }

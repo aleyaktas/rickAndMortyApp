@@ -1,4 +1,4 @@
-import {getCharacterById, getEpisodeById} from '../../services/api/actions';
+import {getCharactersById, getEpisodeById} from '../../services/api/actions';
 import {Episode} from '../../services/api/types';
 
 export const getEpisodesDetails = async (
@@ -11,7 +11,15 @@ export const getEpisodesDetails = async (
   }
 };
 
-export const getCharacterDetails = async (id: number) => {
-  const res = await getCharacterById(id);
-  return res;
+export const getMultipleCharacters = async (
+  ids: number[],
+  setCharacterData: React.Dispatch<
+    React.SetStateAction<{id: number; image: string; name: string}[]>
+  >,
+) => {
+  console.log(ids);
+  const res = await getCharactersById(ids);
+  if (res) {
+    setCharacterData(res);
+  }
 };

@@ -20,7 +20,16 @@ export const getEpisodeById = async (id: number) => {
   return get(`/episode`, `/${id}`);
 };
 
-//get character by id
+/**
+ * It makes a GET request to the server, and returns the result
+ * @returns An array of objects.
+ * @param ids The id of the character
+ */
+
+export const getCharactersById = async (ids: number[]) => {
+  console.log(ids);
+  return get(`/character`, `/${ids.join(',')}`);
+};
 
 /**
  * It makes a GET request to the server, and returns the result
