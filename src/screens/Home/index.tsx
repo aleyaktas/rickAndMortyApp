@@ -1,31 +1,69 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, FlatList} from 'react-native';
 import EpisodeCard from '../../components/molecules/EpisodeCard';
+import {getEpisodes} from '../../services/api/actions';
+import {EpisodeData} from '../../services/api/types';
+import {getAllEpisodes} from './actions';
 
-const Home = () => {
-  const episodeData = {
-    id: 1,
-    name: 'Pilot',
-    air_date: 'December 2, 2013',
-    episode: 'S01E01',
-    characters: ['Rick', 'Morty'],
-    url: 'https://rickandmortyapi.com/api/episode/1',
-    created: '2017-11-10T12:56:33.798Z',
+interface Episode {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+  url: string;
+  created: string;
+}
+
+const Home: React.FC = () => {
+  const [episodes, setEpisodes] = useState<EpisodeData>({
+    info: {
+      count: 0,
+      pages: 0,
+      next: '',
+      prev: null,
+    },
+    results: [],
+  });
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    getAllEpisodes(currentPage, setEpisodes);
+  }, [currentPage]);
+
+  const renderItem = ({item}: {item: Episode}) => {
+    return <EpisodeCard episodeData={item} />;
   };
+
+  const handleLoadMore = () => {
+    if (episodes.info.next) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
-    <View>
-      <View style={styles.episodeCardList}>
-        <EpisodeCard episodeData={episodeData} />
-      </View>
+    <View style={styles.container}>
+      <FlatList
+        data={episodes.results}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.5}
+        initialNumToRender={20}
+        contentContainerStyle={styles.episodeCardList}
+      />
     </View>
   );
 };
 
-export default Home;
-
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   episodeCardList: {
     padding: 16,
     gap: 16,
   },
 });
+
+export default Home;
