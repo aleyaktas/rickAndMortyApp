@@ -70,4 +70,5 @@ export default {
   dodgerBlue: '#1e90ff',
   cultured: '#f5f5f5',
   transparent: 'transparent',
+  title: '#34495e',
 };

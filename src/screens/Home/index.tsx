@@ -1,19 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import EpisodeCard from '../../components/molecules/EpisodeCard';
-import {getEpisodes} from '../../services/api/actions';
-import {EpisodeData} from '../../services/api/types';
+import {Episode, EpisodeData} from '../../services/api/types';
 import {getAllEpisodes} from './actions';
-
-interface Episode {
-  id: number;
-  name: string;
-  air_date: string;
-  episode: string;
-  characters: string[];
-  url: string;
-  created: string;
-}
 
 const Home: React.FC = () => {
   const [episodes, setEpisodes] = useState<EpisodeData>({

@@ -1,4 +1,3 @@
-import colors from '../../../themes/colors';
 import {StyleProps} from './types';
 
 export default (): StyleProps => {
