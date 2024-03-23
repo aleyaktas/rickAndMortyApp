@@ -5,9 +5,9 @@ import {Episode, EpisodeData} from '../../services/api/types';
 import {getAllEpisodes} from './actions';
 import TextInput from '../../components/atoms/TextInput';
 import colors from '../../themes/colors';
+import Header from '../../components/atoms/Header';
 
 const Home: React.FC = () => {
-  const [search, setSearch] = useState<string>('');
   const [episodes, setEpisodes] = useState<EpisodeData>({
     info: {
       count: 0,
@@ -17,7 +17,9 @@ const Home: React.FC = () => {
     },
     results: [],
   });
+  const [filteredEpisodes, setFilteredEpisodes] = useState<Episode[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchValue, setSearchValue] = useState<string>('');
 
   useEffect(() => {
     getAllEpisodes(currentPage, setEpisodes);
@@ -33,10 +35,25 @@ const Home: React.FC = () => {
     }
   };
 
+  const handleSearch = () => {
+    setFilteredEpisodes(
+      episodes.results.filter(
+        episode =>
+          episode.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+          episode.air_date.toLowerCase().includes(searchValue.toLowerCase()) ||
+          episode.episode.toLowerCase().includes(searchValue.toLowerCase()),
+      ),
+    );
+  };
+
+  useEffect(() => {
+    handleSearch();
+  }, [searchValue]);
+
   return (
     <FlatList
       style={styles.container}
-      data={episodes.results}
+      data={searchValue ? filteredEpisodes : episodes.results}
       renderItem={renderItem}
       keyExtractor={item => item.id.toString()}
       onEndReached={handleLoadMore}
@@ -47,10 +64,15 @@ const Home: React.FC = () => {
         <View>
           <TextInput
             placeholder="Search..."
-            value={search}
-            onChange={setSearch}
+            value={searchValue}
+            onChange={setSearchValue}
             containerStyle={styles.search}
           />
+        </View>
+      }
+      ListEmptyComponent={
+        <View>
+          <Header text="No episodes found!" size={20} bold center />
         </View>
       }
     />
