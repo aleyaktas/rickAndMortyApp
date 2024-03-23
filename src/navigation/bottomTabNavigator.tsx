@@ -73,6 +73,20 @@ export default (props: any) => {
         name="Favorites"
         component={Favorites}
         options={{
+          headerBackgroundContainerStyle: {
+            backgroundColor: colors.primary,
+          },
+          headerTitle: 'Favorites',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: 'Fredoka',
+            letterSpacing: 1.2,
+            color: colors.white.default,
+            fontWeight: '600',
+          },
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
           tabBarLabelStyle: fontFamilyStyle,
           tabBarIcon: ({focused}) => (
             <Icon
