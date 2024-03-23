@@ -58,6 +58,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({characterId}) => {
         <InfoCard label="Status" text={character.status} />
         <InfoCard label="Species" text={character.species} />
         <InfoCard label="Gender" text={character.gender} />
+        <InfoCard label="Location" text={character.location.name} />
+        <InfoCard label="Origin" text={character.origin.name} />
       </View>
     </View>
   );
@@ -68,7 +70,7 @@ export default CharacterDetails;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    padding: 16,
+    padding: 20,
   },
   header: {
     flexDirection: 'row',
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
   favorite: {
     position: 'absolute',
     right: 0,
-    top: 16,
+    top: 20,
   },
   infoContainer: {
     gap: 16,

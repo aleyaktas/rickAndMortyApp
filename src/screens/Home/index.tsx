@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 import EpisodeCard from '../../components/molecules/EpisodeCard';
 import {Episode, EpisodeData} from '../../services/api/types';
 import {getAllEpisodes} from './actions';
@@ -31,17 +31,16 @@ const Home: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={episodes.results}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-        onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.5}
-        initialNumToRender={20}
-        contentContainerStyle={styles.episodeCardList}
-      />
-    </View>
+    <FlatList
+      style={styles.container}
+      data={episodes.results}
+      renderItem={renderItem}
+      keyExtractor={item => item.id.toString()}
+      onEndReached={handleLoadMore}
+      onEndReachedThreshold={0.5}
+      initialNumToRender={20}
+      contentContainerStyle={styles.episodeCardList}
+    />
   );
 };
 
@@ -50,8 +49,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   episodeCardList: {
-    padding: 16,
-    gap: 16,
+    padding: 20,
+    gap: 20,
   },
 });
 

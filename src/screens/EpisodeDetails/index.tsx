@@ -30,7 +30,6 @@ const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
   >([]);
 
   const [characterIds, setCharacterIds] = useState<number[]>([]);
-
   const navigation = useNavigation<ScreenProp>();
 
   useEffect(() => {
@@ -61,7 +60,9 @@ const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
         })
       }>
       <Image source={{uri: item.image}} style={styles.characterImage} />
-      <Text style={styles.characterName}>{item.name}</Text>
+      <Text style={styles.characterName} numberOfLines={2} ellipsizeMode="tail">
+        {item.name}
+      </Text>
     </TouchableOpacity>
   );
 
@@ -90,10 +91,10 @@ const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
   },
   contentContainerStyle: {
-    paddingVertical: 16,
+    paddingVertical: 20,
   },
   characterContainer: {
     flex: 1 / 4,

@@ -5,7 +5,7 @@ export default (): StyleProps => {
     card: {
       flexDirection: 'row',
       backgroundColor: 'white',
-      padding: 10,
+      padding: 16,
       borderRadius: 10,
       gap: 10,
       shadowColor: '#000',

@@ -10,6 +10,7 @@ export default (): StyleProps => {
     },
     text: {
       fontSize: 16,
+      flex: 1,
     },
     infoCard: {
       borderWidth: 0.5,
