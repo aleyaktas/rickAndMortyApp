@@ -24,7 +24,7 @@ export const userSlice = createSlice({
             title: 'You can add only 10 characters to favorites!',
           });
         }
-        state.favorites.push(action.payload);
+        state.favorites.unshift(action.payload);
       } else {
         state.favorites.splice(index, 1);
       }
