@@ -8,6 +8,8 @@ export interface HeaderProps extends StyleFnProps {
   top?: boolean;
   onPress?: () => void;
   bottom?: boolean;
+  numberOfLines?: number;
+  ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip';
 }
 
 export interface StyleProps {

@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import Icon from '../../atoms/Icon';
 import style from './styles';
 import {Episode} from '../../../services/api/types';
 import {useNavigation} from '@react-navigation/native';
 import {ScreenProp} from '../../../navigation/types';
+import Header from '../../atoms/Header';
 
 const EpisodeCard = ({episodeData}: {episodeData: Episode}) => {
   const styles = style();
@@ -19,13 +20,17 @@ const EpisodeCard = ({episodeData}: {episodeData: Episode}) => {
           episodeId: episodeData.id,
         });
       }}>
-      <Text style={styles.title}>{episodeData?.episode}</Text>
-      <Text style={styles.subtitle} numberOfLines={1} ellipsizeMode="tail">
-        {episodeData?.name}
-      </Text>
+      <Header text={episodeData?.episode} size={20} bold />
+      <Header
+        text={episodeData?.name}
+        size={16}
+        semiBold
+        numberOfLines={1}
+        ellipsizeMode="tail"
+      />
       <View style={styles.footer}>
         <Icon name="Episode" width={20} height={20} color="black" />
-        <Text>{episodeData?.air_date}</Text>
+        <Header text={episodeData?.air_date} size={14} />
       </View>
     </TouchableOpacity>
   );

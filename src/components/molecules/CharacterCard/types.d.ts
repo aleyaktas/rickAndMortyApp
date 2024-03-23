@@ -7,8 +7,6 @@ export interface CharacterCardProps {
 export interface StyleProps {
   card: StyleProp<ViewStyle>;
   details: StyleProp<ViewStyle>;
-  title: StyleProp<TextStyle>;
-  subtitle: StyleProp<TextStyle>;
   image: StyleProp<ImageStyle>;
   statusContainer: StyleProp<ViewStyle>;
   statusIndicator: StyleProp<ViewStyle>;

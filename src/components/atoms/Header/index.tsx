@@ -20,6 +20,8 @@ export default ({
   overLine,
   underLine,
   family = 'Fredoka',
+  numberOfLines,
+  ellipsizeMode,
   ...props
 }: HeaderProps) => {
   const styles = style({
@@ -37,6 +39,8 @@ export default ({
 
   return (
     <Text
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
       onPress={onPress}
       allowFontScaling={false}
       style={[

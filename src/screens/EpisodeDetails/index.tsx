@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Image,
   FlatList,
@@ -14,6 +13,7 @@ import colors from '../../themes/colors';
 import InfoCard from '../../components/molecules/InfoCard';
 import {ScreenProp} from '../../navigation/types';
 import {useNavigation} from '@react-navigation/native';
+import Header from '../../components/atoms/Header';
 
 const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
   const [episode, setEpisode] = useState<Episode>({
@@ -60,9 +60,14 @@ const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
         })
       }>
       <Image source={{uri: item.image}} style={styles.characterImage} />
-      <Text style={styles.characterName} numberOfLines={2} ellipsizeMode="tail">
-        {item.name}
-      </Text>
+      <Header
+        size={14}
+        text={item.name}
+        style={styles.characterName}
+        numberOfLines={2}
+        ellipsizeMode="tail"
+        center
+      />
     </TouchableOpacity>
   );
 
@@ -81,7 +86,13 @@ const EpisodeDetails: React.FC<EpisodeDetailsProps> = ({episodeId}) => {
             <InfoCard label="Air Date" text={episode.air_date} />
             <InfoCard label="Episode" text={episode.episode} />
           </View>
-          <Text style={styles.characterTitle}>Characters</Text>
+          <Header
+            text="Characters"
+            size={24}
+            bold
+            color={colors.slimyGreen}
+            style={styles.characterTitle}
+          />
         </>
       }
     />
@@ -113,14 +124,9 @@ const styles = StyleSheet.create({
   characterName: {
     flex: 1,
     marginTop: 'auto',
-    fontSize: 14,
-    textAlign: 'center',
     padding: 8,
   },
   characterTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.slimyGreen,
     marginBottom: 12,
   },
   infoCardContainer: {gap: 16, marginVertical: 16},

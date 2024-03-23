@@ -1,25 +1,16 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import style from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {ScreenProp} from '../../../navigation/types';
 import Image from '../../atoms/Image';
 import {CharacterCardProps} from './types';
+import Header from '../../atoms/Header';
+import {getStatusColor} from '../../../helpers';
 
 const CharacterCard: React.FC<CharacterCardProps> = ({characterData}) => {
   const styles = style();
   const navigation = useNavigation<ScreenProp>();
-
-  const getStatusColor = () => {
-    switch (characterData?.status) {
-      case 'Dead':
-        return 'red';
-      case 'Alive':
-        return 'green';
-      default:
-        return 'gray';
-    }
-  };
 
   return (
     <TouchableOpacity
@@ -32,19 +23,22 @@ const CharacterCard: React.FC<CharacterCardProps> = ({characterData}) => {
       }}>
       <Image source={{uri: characterData?.image}} style={styles.image} />
       <View style={styles.details}>
-        <Text style={styles.title}>{characterData?.name}</Text>
+        <Header text={characterData?.name} size={20} bold />
         <View style={styles.statusContainer}>
           <View
             style={[
               styles.statusIndicator,
-              {backgroundColor: getStatusColor()},
+              {
+                backgroundColor: getStatusColor(
+                  characterData?.status.toLowerCase(),
+                ),
+              },
             ]}
           />
-          <Text style={styles.subtitle}>{characterData?.status}</Text>
+          <Header text={characterData?.status} size={16} />
         </View>
-
-        <Text style={styles.subtitle}>{characterData?.species}</Text>
-        <Text>{characterData?.gender}</Text>
+        <Header text={characterData?.species} size={16} />
+        <Header text={characterData?.gender} size={16} />
       </View>
     </TouchableOpacity>
   );

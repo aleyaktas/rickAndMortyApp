@@ -16,13 +16,6 @@ export default (): StyleProps => {
       shadowRadius: 3.84,
       elevation: 5,
     },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
-    subtitle: {
-      fontSize: 16,
-    },
     footer: {
       flexDirection: 'row',
       gap: 6,

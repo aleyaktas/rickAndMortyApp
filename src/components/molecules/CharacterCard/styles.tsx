@@ -22,13 +22,6 @@ export default (): StyleProps => {
       padding: 10,
       justifyContent: 'center',
     },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
-    subtitle: {
-      fontSize: 16,
-    },
     image: {
       width: 100,
       height: 100,

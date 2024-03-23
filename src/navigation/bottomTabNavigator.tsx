@@ -19,7 +19,7 @@ export default (props: any) => {
   const fontFamilyStyle: StyleProp<TextStyle> = {
     fontFamily: 'Fredoka',
     letterSpacing: 1.2,
-    color: colors.primary,
+    color: colors.charlestonGreen,
     fontWeight: '500',
   };
 

@@ -7,6 +7,5 @@ export interface InfoCardProps {
 
 export interface StyleProps {
   infoCard: StyleProp<ViewStyle>;
-  label: StyleProp<TextStyle>;
   text: StyleProp<TextStyle>;
 }
